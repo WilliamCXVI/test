@@ -1,1 +1,1 @@
-Java Text Editor, my first project.
+Java Practice Coding.
