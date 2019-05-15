@@ -1,1 +1,1 @@
-Java Text Editor, my first project.
+These projects still need some work prior to completion.
