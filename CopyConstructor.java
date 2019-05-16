@@ -1,5 +1,5 @@
 
-public class Main {
+public class CopyConstructor {
 	public static void main(String[] args)
 	{
 		BankAccount Object1 = new BankAccount(100);
