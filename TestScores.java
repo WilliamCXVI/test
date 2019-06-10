@@ -4,15 +4,12 @@ public class TestScores {
 	private int[] arr;
 	private double average;
 	
-	public TestScores(int[] arr ) throws IllegalArgumentException
+	public TestScores(int[] arr ) throws InvalidTestScore
 	{
 		for(int element: arr)
 		{
-			if(element<0)
-			throw new IllegalArgumentException("The test score must have a value of at least 0.");
-			
-			if(element>100)
-			throw new IllegalArgumentException("The test score must have a value of no more than 100.");
+			if(element<0||element>100)
+			throw new InvalidTestScore(arr);
 		}
 		this.arr=arr;
 	}
