@@ -1,23 +1,26 @@
-
 public class Month {
 
 	private int MonthNumber;
 	
 	public Month()
 	{
-		MonthNumber=1;
+		MonthNumber=0;
 	}
 	
-	public void Month(int MonthNumber)
+	public void Month(int MonthNumber) throws InvalidMonth
 	{
-		this.MonthNumber=MonthNumber;
-		if(this.MonthNumber<1||this.MonthNumber>12)
+		
+		if(MonthNumber<1||MonthNumber>12)
 		{
-			this.MonthNumber=1;
+			throw new InvalidMonth(MonthNumber);
+		}
+		else
+		{
+			this.MonthNumber=MonthNumber;
 		}
 	}
 	
-	public void Month(String MonthName)
+	public void Month(String MonthName) throws InvalidMonth
 	{
 		switch(MonthName)
 		{
@@ -57,15 +60,20 @@ public class Month {
 		case "December":
 		MonthNumber=12;
 		break;
+		default:
+		throw new InvalidMonth(MonthName);
 		}
 	}
 	
-	public void setMonthNumber(int MonthNumber)
+	public void setMonthNumber(int MonthNumber) throws InvalidMonth
 	{
-		this.MonthNumber=MonthNumber;
-		if(this.MonthNumber<1||this.MonthNumber>12)
+		if(MonthNumber<1||MonthNumber>12)
 		{
-			this.MonthNumber=1;
+			throw new InvalidMonth(MonthNumber);
+		}
+		else
+		{
+			this.MonthNumber=MonthNumber;
 		}
 	}
 	
@@ -115,7 +123,6 @@ public class Month {
 		case 12:
 		output = "December";
 		break;
-	
 		}
 		return output;
 	}

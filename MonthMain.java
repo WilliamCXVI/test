@@ -6,10 +6,12 @@ public class MonthMain {
 	Month m1=new Month(), m2=new Month();
 	Scanner keyboard = new Scanner(System.in);
 	String input;
+	boolean success=false;
 	char repeat='n';
 	char enter;
 	int tempInput;
 	do {
+		success=false;
 		System.out.println("FIRST MONTH:: ");
 		do {
 			System.out.println("Enter by month number?");
@@ -22,25 +24,30 @@ public class MonthMain {
 		
 		if(enter=='y')
 		{
-			do {
-				System.out.println("Enter the month number:: ");
-				input=keyboard.nextLine();
-				if(isInteger(input)==false)
-				System.out.println("Invalid input!");
-			}while(isInteger(input)==false);
-			
+			System.out.println("Enter the month number:: ");
+			input=keyboard.nextLine();
 			tempInput=Integer.valueOf(input);
+			try 
+			{
 			m1.setMonthNumber(tempInput);
+			}
+			catch(InvalidMonth e)
+			{
+				System.out.println(e.getMessage());
+			}
 		}
 		else
 		{
-			do {
-				System.out.println("Enter the month name:: ");
-				input=keyboard.nextLine();
-				if(isMonth(input)==false)
-				System.out.println("Invalid input!");
-			}while(isMonth(input)==false);
-			m1.Month(input);
+			System.out.println("Enter the month name:: ");
+			input=keyboard.nextLine();
+			try
+			{
+				m1.Month(input);
+			}
+			catch(InvalidMonth e)
+			{
+				System.out.println(e.getMessage());
+			}
 		}
 			
 		
@@ -57,34 +64,44 @@ public class MonthMain {
 		
 		if(enter=='y')
 		{
-			do {
-				System.out.println("Enter the month number:: ");
-				input=keyboard.nextLine();
-				if(isInteger(input)==false)
-				System.out.println("Invalid input!");
-			}while(isInteger(input)==false);
-			
+			System.out.println("Enter the month number:: ");
+			input=keyboard.nextLine();
 			tempInput=Integer.valueOf(input);
-			m2.setMonthNumber(tempInput);
+			try
+			{
+				m2.setMonthNumber(tempInput);
+			}
+			catch(InvalidMonth e)
+			{
+				System.out.println(e.getMessage());
+			}
 		}
 		else
 		{
-			do {
-				System.out.println("Enter the month name:: ");
-				input=keyboard.nextLine();
-				if(isMonth(input)==false)
-				System.out.println("Invalid input!");
-			}while(isMonth(input)==false);
-			m2.Month(input);
+			System.out.println("Enter the month name:: ");
+			input=keyboard.nextLine();
+			try
+			{
+				m2.Month(input);
+			}
+			catch(InvalidMonth e)
+			{
+				System.out.println(e.getMessage());
+			}
 		}
 			
 
 		// OUTPUT
-		
-		System.out.println("FIRST MONTH:: "+m1);
-		System.out.println("SECOND MONTH:: "+m2);
-		System.out.println("The first month is "+getRelation(m1,m2)+" the second month.");
-		
+		if(success)
+		{
+			System.out.println("FIRST MONTH:: "+m1);
+			System.out.println("SECOND MONTH:: "+m2);
+			System.out.println("The first month is "+getRelation(m1,m2)+" the second month.");
+		}
+		else
+		{
+			System.out.println("The program has been provided invalid inputs.");
+		}
 		do {
 			System.out.println("Repeat the program?");
 			input=keyboard.nextLine();
@@ -95,6 +112,7 @@ public class MonthMain {
 		repeat=input.charAt(0);
 		
 	}while(repeat=='y');
+	keyboard.close();
 }
 	
 	
@@ -113,78 +131,7 @@ public class MonthMain {
 		}
 		return false;
 	}
-	
-	public static boolean isInteger(String input)
-	{	
-		if(input.length()==0)
-			return false;
-		for(int index = 0; index<input.length(); index++)
-		{
-			switch(input.charAt(index)) 
-			{
-				case '0':
-				break;
-				case '1':
-				break;
-				case '2':
-				break;
-				case '3':
-				break;
-				case '4':
-				break;
-				case '5':
-				break;
-				case '6':
-				break;
-				case '7':
-				break;
-				case '8':
-				break;
-				case '9':
-				break;
-				default:
-					//debug:: System.out.println("checkpoint");
-				return false;
-				
-			}
-		}
-		return true;
-	}
-	
-	public static boolean isMonth(String MonthName)
-	{
-		boolean bool=true;
-		switch(MonthName)
-		{
-		case "January":
-		break;
-		case "February":
-		break;
-		case "March":
-		break;
-		case "April":
-		break;
-		case "May":
-		break;
-		case "June":
-		break;
-		case "July":
-		break;
-		case "August":
-		break;
-		case "September":
-		break;
-		case "October":
-		break;
-		case "November":
-		break;
-		case "December":
-		break;
-		default:
-		bool = false;
-		}
-		return bool;
-	}
+
 	public static String getRelation(Month object1, Month object2)
 	{
 		String output="";
@@ -197,4 +144,3 @@ public class MonthMain {
 		return output;
 	}
 }
-
