@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class TestScores {
+public class TestScores implements Serializable{
 	
 	private int[] arr;
 	private double average;
